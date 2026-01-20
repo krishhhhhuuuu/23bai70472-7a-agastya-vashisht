@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>agastya</title>
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Arial, sans-serif;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+      margin:0;
+      background:#f7f7f7;
+      flex-direction:column;
+    }
+    a.name {
+      font-size:2.8rem;
+      font-weight:700;
+      color:#333;
+      animation: float 3s ease-in-out infinite;
+      text-decoration:none;
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:6px;
+    }
+    a.name:active { transform: translateY(-2px); }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+      100% { transform: translateY(0); }
+    }
+
+    @keyframes jump {
+      0%   { transform: translateY(0); }
+      30%  { transform: translateY(-28px); }
+      50%  { transform: translateY(-16px); }
+      70%  { transform: translateY(-22px); }
+      100% { transform: translateY(0); }
+    }
+
+    a.name { cursor:pointer; }
+    a.name.jump { animation: jump 0.6s cubic-bezier(.22,.8,.3,1) both; }
+    h2#destination { transition: background .4s ease, transform .3s ease; padding:6px 12px; border-radius:6px; }
+    h2#destination.highlight { background: #fff3b0; transform: translateY(-6px); }
+  </style>
+</head>
+<body>
+  <a href="#destination" class="name">agastya</a>
+
+  <div style="height:60vh"></div>
+  <h2 id="destination">Agastya</h2>
+
+  <script>
+    (function(){
+      const link = document.querySelector('.name');
+      const dest = document.getElementById('destination');
+      link.addEventListener('click', function(e){
+        e.preventDefault();
+        // jump animation (adds class and removes it after animation ends)
+        link.classList.add('jump');
+        link.addEventListener('animationend', function handler(){
+          link.classList.remove('jump');
+          link.removeEventListener('animationend', handler);
+        });
+        // smooth scroll to destination and highlight
+        dest.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        dest.classList.add('highlight');
+        setTimeout(()=> dest.classList.remove('highlight'), 1100);
+      });
+    })();
+  </script>
+</body>
+</html>
