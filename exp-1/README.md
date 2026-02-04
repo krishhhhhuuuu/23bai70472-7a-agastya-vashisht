@@ -1,16 +1,56 @@
-# React + Vite
+🎯 Aim
+To design and implement a React Single Page Application using `useState` for navigation without page reload.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🧠 Objective
+* To understand how SPA works in React
+* To use `useState` for conditional rendering
+* To implement navigation without React Router
+* To build a reusable navigation bar
+* To improve component-based design understanding
 
-Currently, two official plugins are available:
+🛠️ Tools & Technologies Used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* React (Vite)
+* JavaScript (ES6)
+* HTML5
+* CSS3
+* VS Code
+* Git & GitHub
 
-## React Compiler
+⚙️ Project Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* Home, About, and Contact pages
+* Navigation bar
+* Page switching without reload
+* No external routing library used
+* Fast and lightweight SPA
+* Beginner-friendly implementation
 
-## Expanding the ESLint configuration
+🧩 Methodology / Working
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. A state variable (`page`) is created using `useState`.
+2. Navigation buttons update the state based on user clicks.
+3. Conditional rendering is used to display the selected page component.
+4. The navigation bar remains constant while page content changes dynamically.
+5. Since React re-renders components without refreshing the browser, the application behaves as a Single Page Application.
+
+📂 Project Structure
+
+```
+src/
+ ├── Pages/
+ │    ├── home.jsx
+ │    ├── about.jsx
+ │    └── contact.jsx
+ ├── App.jsx
+ ├── main.jsx
+ └── App.css
+```
+
+ Result
+
+A fully functional React Single Page Application was successfully created using `useState`. Navigation between pages occurs smoothly without reloading the browser, fulfilling the objectives of the experiment.
+
+📌 Conclusion
+
+This experiment helps in understanding the core concept of Single Page Applications in React. Using `useState` for navigation provides a simple and effective approach for small applications and helps beginners grasp the fundamentals of state management and conditional rendering.
