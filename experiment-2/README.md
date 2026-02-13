@@ -1,16 +1,51 @@
-# React + Vite
+# 🧪 Experiment 2 - Modern UI Web Page (React + UI Libraries)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📌 Project Title
+**StartupX - Modern Landing Page**
 
-Currently, two official plugins are available:
+## 🎯 Objective
+To design a modern, sleek, and visually appealing web page using UI component libraries.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project helps in:
+- Learning component-based UI design in React
+- Understanding folder structure and reusable components
+- Building a meaningful real-world webpage
+- Applying modern UI/UX principles with responsiveness
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Tech Stack Used
+- **React (Vite)**
+- **Bootstrap + React-Bootstrap**
+- **Material UI (MUI)**
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ✅ Features
+- Modern and clean UI design
+- Responsive layout (mobile + desktop)
+- Navbar with Home link
+- Full-screen Hero Section with CTA button
+- Footer section
+
+---
+
+## 📁 Folder Structure
+src/
+│
+├── components/
+│   ├── Navbar.jsx
+│   ├── Footer.jsx
+│   ├── HeroSection.jsx
+│   └── CardComponent.jsx
+│
+├── pages/
+│   └── Home.jsx
+│
+├── App.jsx
+├── main.jsx
+└── index.css
+
+##  Conclusion 
+
+In this experiment, we successfully designed and developed a modern, sleek, and responsive webpage using React along with UI component libraries such as Bootstrap and Material UI (MUI). The project helped in understanding component-based development, proper folder structuring, and the use of pre-built UI components to create a clean and meaningful real-world interface. The webpage was tested for responsiveness on different screen sizes and was prepared for deployment and submission.
