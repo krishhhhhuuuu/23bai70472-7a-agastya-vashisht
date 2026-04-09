@@ -1,0 +1,94 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Helper functions ──────────────────────────────────────
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function getUserData() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+
+    function isTeacher() {
+      return isSignedIn() && getUserData().role == 'teacher';
+    }
+
+    function isAdmin() {
+      return isSignedIn() && getUserData().role == 'admin';
+    }
+
+    function isTeacherOrAdmin() {
+      return isTeacher() || isAdmin();
+    }
+
+    function isApprovedStudent() {
+      return isSignedIn() && getUserData().role == 'student' && getUserData().approved == true;
+    }
+
+    // ── Users ─────────────────────────────────────────────────
+    match /users/{userId} {
+      allow read: if isSignedIn();
+      allow write: if request.auth.uid == userId || isAdmin();
+    }
+
+    // ── Subjects & Units ──────────────────────────────────────
+    match /subjects/{subjectId} {
+      allow read: if isSignedIn();
+      allow create: if isTeacherOrAdmin();
+      allow update, delete: if isTeacherOrAdmin() &&
+        resource.data.createdBy == request.auth.uid;
+
+      match /units/{unitId} {
+        allow read: if isSignedIn();
+        allow write: if isTeacherOrAdmin();
+      }
+    }
+
+    // ── Quizzes ───────────────────────────────────────────────
+    match /quizzes/{quizId} {
+      allow read: if isSignedIn();
+      allow create: if isTeacherOrAdmin();
+      allow update, delete: if isTeacherOrAdmin() &&
+        resource.data.createdBy == request.auth.uid;
+
+      match /questions/{questionId} {
+        allow read: if isSignedIn();
+        allow write: if isTeacherOrAdmin();
+      }
+
+      match /ai_drafts/{draftId} {
+        allow read, write: if isTeacherOrAdmin();
+      }
+    }
+
+    // ── Quiz Attempts (student results) ───────────────────────
+    match /attempts/{attemptId} {
+      allow read: if isSignedIn() && (
+        resource.data.studentId == request.auth.uid || isTeacherOrAdmin()
+      );
+      allow create: if isApprovedStudent();
+      allow update: if isApprovedStudent() &&
+        resource.data.studentId == request.auth.uid;
+    }
+
+    // ── Tutor interactions ────────────────────────────────────
+    match /tutor_interactions/{docId} {
+      allow read: if isTeacherOrAdmin();
+      allow create: if isApprovedStudent();
+    }
+
+    // ── Goals ─────────────────────────────────────────────────
+    match /goals/{goalId} {
+      allow read, write: if isSignedIn() &&
+        (resource == null || resource.data.userId == request.auth.uid);
+    }
+
+    // ── Study Groups ──────────────────────────────────────────
+    match /studyGroups/{groupId} {
+      allow read: if isSignedIn();
+      allow write: if isSignedIn();
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "quiz-ai-backend",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "@google/genai": "^1.48.0",
+    "@google/generative-ai": "^0.24.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.3.1",
+    "firebase-admin": "^12.3.0",
+    "groq-sdk": "^1.1.2",
+    "jszip": "^3.10.1",
+    "multer": "^2.1.1",
+    "pdf-parse": "^2.4.5",
+    "sharp": "^0.34.5",
+    "tesseract.js": "^7.0.0"
+  }
+}

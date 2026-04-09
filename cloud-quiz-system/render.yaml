@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: cloudquiz-backend
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: NODE_ENV
+        value: production
+      # Add these manually in Render dashboard:
+      # GROQ_API_KEY
+      # FIREBASE_PROJECT_ID
+      # FIREBASE_CLIENT_EMAIL
+      # FIREBASE_PRIVATE_KEY
+      # FRONTEND_URL  (your Vercel URL)

@@ -1,0 +1,41 @@
+.counter-box{
+  background:white;
+  color:black;
+  padding:30px;
+  width:260px;
+  margin:auto;
+  border-radius:12px;
+  box-shadow:0 6px 15px rgba(0,0,0,0.2);
+}
+
+.number{
+  font-size:45px;
+  margin-bottom:20px;
+}
+
+.buttons{
+  display:flex;
+  justify-content:space-between;
+}
+
+.btn{
+  padding:10px 15px;
+  border:none;
+  border-radius:6px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.inc{
+  background:#4CAF50;
+  color:white;
+}
+
+.dec{
+  background:#f44336;
+  color:white;
+}
+
+.btn:hover{
+  opacity:0.85;
+}
