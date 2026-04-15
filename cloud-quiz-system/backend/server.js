@@ -1,4 +1,4 @@
-import 'dotenv/config';
+alkimport 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import rateLimit from 'express-rate-limit';
