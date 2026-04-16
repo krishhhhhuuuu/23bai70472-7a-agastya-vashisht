@@ -4,10 +4,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/public")
+@CrossOrigin(origins = "http://localhost:3000")
 public class PublicController {
 
     @GetMapping("/hello")
-    public String hello() {
-        return "Public endpoint";
+    public java.util.Map<String, String> hello() {
+        return java.util.Map.of("message", "Public endpoint");
     }
 }
