@@ -3,6 +3,7 @@ import axios from "axios";
 
 function Dashboard() {
   const [data, setData] = useState("");
+  const [error, setError] = useState("");
   const token = sessionStorage.getItem("token");
 
   // 🔐 Protect route
@@ -15,21 +16,17 @@ function Dashboard() {
   // 📡 Fetch protected data
   const getData = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/protected", {
+      const res = await axios.get("http://localhost:8080/protected", {
         headers: {
-          Authorization: `Bearer ${token}`
+          Authorization: "Bearer " + token
         }
       });
 
-      setData(
-        typeof res.data === "object"
-          ? JSON.stringify(res.data)
-          : res.data
-      );
-
+      setData(res.data);
+      setError("");
     } catch (err) {
-      console.error(err);
-      alert("Unauthorized ❌ or Server Error");
+      setError("Unauthorized or server error ❌");
+      setData("");
     }
   };
 
@@ -43,8 +40,6 @@ function Dashboard() {
     <div className="container mt-5">
       <h2>Dashboard</h2>
 
-      <h5 className="mb-3">Welcome User 👋</h5>
-
       <button className="btn btn-success me-2" onClick={getData}>
         Fetch Data
       </button>
@@ -53,10 +48,11 @@ function Dashboard() {
         Logout
       </button>
 
-      <div className="mt-3">
-        <strong>Response:</strong>
-        <p>{data}</p>
-      </div>
+      {/* ✅ Success */}
+      {data && <p className="mt-3 text-success">{data}</p>}
+
+      {/* ❌ Error */}
+      {error && <p className="mt-3 text-danger">{error}</p>}
     </div>
   );
 }

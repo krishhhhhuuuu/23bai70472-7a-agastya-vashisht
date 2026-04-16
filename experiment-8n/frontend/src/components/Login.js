@@ -7,18 +7,16 @@ function Login() {
 
   const login = async () => {
     try {
-      const res = await axios.post("http://localhost:5000/login", {
+      const res = await axios.post("http://localhost:8080/login", {
         username,
         password
       });
 
-      if (res.data.token) {
-        sessionStorage.setItem("token", res.data.token);
-        window.location.href = "/dashboard";
-      }
-    } catch (err) {
-      console.error(err);
-      alert("Login Failed ❌");
+      sessionStorage.setItem("token", res.data.token);
+      window.location.href = "/dashboard";
+
+    } catch {
+      alert("Login Failed");
     }
   };
 
@@ -26,17 +24,15 @@ function Login() {
     <div className="container mt-5">
       <h2>Login</h2>
 
-      <input
-        className="form-control"
+      <input className="form-control"
         placeholder="Username"
-        onChange={(e) => setUsername(e.target.value)}
+        onChange={(e)=>setUsername(e.target.value)}
       /><br/>
 
-      <input
+      <input className="form-control"
         type="password"
-        className="form-control"
         placeholder="Password"
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={(e)=>setPassword(e.target.value)}
       /><br/>
 
       <button className="btn btn-primary" onClick={login}>
